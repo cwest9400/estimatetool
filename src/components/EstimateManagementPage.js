@@ -1,5 +1,3 @@
-//
-
 
 import React, { useState } from "react";
 import Header from "./Header";
@@ -29,37 +27,44 @@ function EstimateManagementPage() {
   const [messageModal, setMessageModal] = useState({ show: false, message: '' });
 
 
-
+  // Function for bringing up the estimate naming modal
   const handleCreateEstimate = () => {
     setIsNamingModalVisible(true);
   };
 
+  // Function for setting the estimate name
   const handleNamingSave = (name) => {
     setEstimateName(name);
     setIsNamingModalVisible(false);
     setIsEstimateActive(true);
   };
 
+  // Function for adding a line item
   const handleAddLineItem = () => {
+    // Ensure the form starts off empty
     setCurrentItem({
       id: null,
       description: "",
       type: "Materials",
       amount: "",
     });
+    // Open up the modal for adding a line item
     setShowModal(true);
   };
 
+  // Open the add item modal and set current item (so that the fields will prepopulate)
   const handleEditItem = (item) => {
     setCurrentItem(item);
     setShowModal(true);
   };
 
-  // Add or update a line item in the current estimate
+  // Save line item in the current estimate object. Reset current item to empty and close modal.
   const handleSaveItem = (item) => {
+    // If item has an ID already, update the item
     if (item.id) {
       // Update existing item
       setEstimates(estimates.map((est) => (est.id === item.id ? item : est)));
+    // Otherwise, if the item had no ID, the item is a new item  
     } else {
       // Add new item with a new unique id
       const newItem = { ...item, id: Date.now() }; // Simple unique id
@@ -69,12 +74,16 @@ function EstimateManagementPage() {
     setShowModal(false);
   };
 
+  // Function for deleting Line Item- (it's filtered out of the estimate(ln items))
   const handleDeleteItem = (id) => {
     const updatedEstimates = estimates.filter((item) => item.id !== id);
     setEstimates(updatedEstimates);
   };
 
+  // Function for saving the estimate
+  // If estimate has line items, save the estimate and add it to setAllEstimates
   const handleSaveEstimate = () => {
+    // If the estimate has line items, save new estimate and add it to setAllEstimates
     if (estimates.length > 0) {
         const newEstimate = {
             id: Date.now(),  // unique identifier
@@ -82,22 +91,22 @@ function EstimateManagementPage() {
             date: new Date().toLocaleDateString(),  // Save the current date
             items: estimates,
         };
-        setAllEstimates(prevEstimates => [...prevEstimates, newEstimate]);
-        setMessageModal({ show: true, message: "Estimate saved!" });
-        setEstimates([]); // Optionally clear estimates
-        setIsEstimateActive(false);
+        setAllEstimates(prevEstimates => [...prevEstimates, newEstimate]); // Update All Estimates with the new one
+        setMessageModal({ show: true, message: "Estimate saved!" }); // Trigger message modal
+        setEstimates([]); // Clear estimate data
+        setIsEstimateActive(false); // Turn off estimate creation mode
     } else {
         setMessageModal({ show: true, message: "No items to save." });
     }
 };
 
-
+// Function to close the estimate without saving
   const handleCancelEstimate = () => {
     setEstimates([]);  // Clear the current estimates
     setIsEstimateActive(false);  // Disable estimate creation mode
 };
 
-
+// Function to close Message Modal
   const handleCloseMessageModal = () => {
     setMessageModal({ show: false, message: '' });
     setCurrentItem(null);  // Reset the current item
