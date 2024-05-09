@@ -1,0 +1,71 @@
+
+.centered-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-spacing {
+    margin-left: 10px;
+}
+
+/* If you want to ensure the table is centered as well */
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button { 
+    background-color: rgb(63, 39, 107); /* Solid black background */
+    color: white; /* White text */
+    padding: 8px 16px; /* Vertical and horizontal padding */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor indicates button is clickable */
+    text-transform: uppercase; /* Optional: capitalizes button text */
+    font-weight: bold; /* Makes the text bold */
+    margin: 5px; /* Adds space around the button */
+    transition: background-color 0.1s, transform 0.1s; /* Smooth transition for hover effects */
+}
+
+button:hover {
+    background-color: rgb(121, 83, 192); /* Darker shade on hover */
+  
+}
+
+button:active {
+    transform: scale(0.95); /* Slightly decrease size when clicked */
+}
+
+.button-cancel {
+    background-color: transparent; /* No background color */
+    color: rgb(63, 39, 107); /* Text color - could match your design */
+    border: 2px solid rgb(63, 39, 107); /* Visible border */
+    padding: 8px 16px; /* Consistent padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: color 0.1s, border-color 0.1s; /* Transition for hover effects */
+}
+
+.button-cancel:hover {
+    color: rgb(255, 255, 255);
+    border-color:rgb(121, 83, 192);
+    background-color: rgb(121, 83, 192); /* No background color */
+
+} 
+
+.header-container {
+    padding: 24px 0px;
+}
+
+.footer-container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}

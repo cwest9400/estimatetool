@@ -1,0 +1,101 @@
+/* controlling table z-index to layer below modals */
+.table-content {
+    z-index: 2; /* Ensure this is low enough not to interfere with modals */
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: auto; /* or specific width */
+    max-width: 100%; /* Responsive max width */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the table horizontally */
+    overflow-x: wrap;
+}
+
+.table-content table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed;
+}
+
+.table-content th, .table-content td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: inherit;
+}
+
+.table-content th {
+    background-color: #f4f4f4;
+    max-width: inherit;
+}
+
+.table-content tfoot th {
+    background-color: #e2e2e2;
+    font-weight: bold;
+    max-width: inherit;
+}
+
+.table-style {
+    width: 100%;
+    table-layout: fixed; /* Controls column widths strictly */
+    border-collapse: collapse;
+}
+
+.table-style th, .table-style td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+/* Specific widths for each column */
+.table-style th.ln-column {
+    width: 5%; /* Width for the line number column */
+}
+
+.table-style th.desc-column {
+    width: 50%; /* Larger width for descriptions */
+}
+
+.table-style th.type-column {
+    width: 15%; /* Width for the type */
+}
+
+.table-style th.amount-column {
+    width: 7%; /* Width for the amount */
+}
+
+.table-style th.actions-column {
+    width: 20%; /* Space for action buttons */
+
+}
+
+.actions-column .button-container {
+    display: flex;
+    justify-content: space-around; /* Horizontally space buttons */
+    width: 100%;
+}
+
+@media (max-width: 650px) {
+    .actions-column .button-container {
+        flex-direction: column; /* Stacks children vertically on small screens */
+        align-items: center; /* Centers buttons */
+    }
+
+    .actions-column .button-container button {
+        margin: 5px 0; /* Adjusts margin for vertical stacking */
+        width: 100%; /* Makes buttons full width for easier access */
+        padding: 6px 10px;
+        font-size: 12px; 
+    }
+}

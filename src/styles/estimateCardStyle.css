@@ -1,0 +1,115 @@
+/* card container style */
+.estimates-list {
+    display: flex;
+    flex-direction: column;  /* Aligns children (cards) in a vertical column */
+    align-items: center;     /* Centers the cards horizontally */
+    gap: 10px;               /* Adds space between each card */
+}
+
+/* card style */
+.estimate-card {
+    max-width: 500px;  /* Ensures cards are not too wide */
+    width: 100%;       /* Makes cards take full width of the container */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: #fff;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;  /* Smooth transitions for transform and shadow */
+    cursor: pointer;  /* Changes the cursor to a pointer to indicate it's clickable */
+}
+
+.estimate-card:hover {
+    transform: scale(1.05);  /* Slightly increases the size of the card */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);  /* Enhances the shadow to give a "lifted" effect */
+}
+
+.estimate-content {
+    display: flex;
+    justify-content: space-between; /* Aligns children (name and date) on each end */
+    align-items: center; /* Centers children vertically */
+}
+
+.estimate-name, .estimate-date {
+    margin: 0; /* Removes default margin from h4 and p */
+    padding: 0;
+}
+
+/* EstimateDetailsModal Style */
+.modal-overlay-estimate-detail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to start at the top */
+    padding-top: 10vh; /* Adds some top padding to push it down slightly */
+    z-index: 1040; /* Ensure it's above other content */
+}
+
+
+.modal-content-estimate-detail {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1050; /* Above the overlay */
+    width: auto; /* or specific width */
+    max-width: 90%; /* Responsive max width */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the table horizontally */
+    transform: translateY(0%); /* Adjust this if needed */
+}
+
+
+.modal-content-estimate-detail th, .modal-content-estimate-detail td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.modal-content-estimate-detail th {
+    background-color: #f4f4f4;
+}
+
+.modal-content-estimate-detail tfoot th {
+    background-color: #e2e2e2;
+    font-weight: bold;
+}
+
+.modal-content-estimate-detail table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.modal-content-estimate-detail .estimate-name {
+    overflow: hidden;
+    text-overflow: elipses;
+    white-space: nowrap;
+
+}
+
+.modal-content-estimate-detail .description-cell {
+    max-width: 200px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .estimate-card {
+        max-width: 90%;  /* Allows some margin on small screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .modal-content-estimate-detail table {
+        min-width: 100%; 
+    }
+}
