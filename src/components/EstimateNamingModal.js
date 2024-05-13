@@ -7,6 +7,10 @@ const EstimateNamingModal = ({ onSave, onClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!name.trim()){
+            alert('Please enter a name for the estimate') // TODO: change to message modal
+            return;
+        }
         onSave(name);  // Pass the name back to the parent component
     };
 

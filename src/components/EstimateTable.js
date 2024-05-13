@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+// When new line item added ("estimate") maps estimate array to table, an item is deited or deleted
 const EstimateTable = ({ estimate, onEditItem, onDeleteItem }) => {
     return (
         <div className="table-content">

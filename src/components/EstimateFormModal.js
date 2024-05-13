@@ -25,6 +25,11 @@ const EstimateFormModal = ({ onSave, onClose, item = {} }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!description.trim()){
+            alert('please fill in the description') //TODO: Change to message modal
+            return
+        }
+        
         // copy item from state to collection of line items in EstimateManagementPage - handleSaveItem
         onSave({ ...item, description, type, amount: parseFloat(amount) });
     };

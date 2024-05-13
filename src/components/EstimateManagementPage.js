@@ -11,7 +11,7 @@ import EstimatesList from "./EstimatesList";
 function EstimateManagementPage() {
   // Store the active estimate info
   const [estimates, setEstimates] = useState([]);
-  // Store current time for adding to estimate when saved
+  // Store current item for editing/deleting from estimate
   const [currentItem, setCurrentItem] = useState(null);
   // Store if add/edit line modal is on or off
   const [showModal, setShowModal] = useState(false);
@@ -48,6 +48,7 @@ function EstimateManagementPage() {
       type: "Materials",
       amount: "",
     });
+
     // Open up the modal for adding a line item
     setShowModal(true);
   };
@@ -62,11 +63,11 @@ function EstimateManagementPage() {
   const handleSaveItem = (item) => {
     // If item has an ID already, update the item
     if (item.id) {
-      // Update existing item
+      // Update existing line item to the (current) estimate array
       setEstimates(estimates.map((est) => (est.id === item.id ? item : est)));
     // Otherwise, if the item had no ID, the item is a new item  
     } else {
-      // Add new item with a new unique id
+      // Add new item with a new unique id tot he (current) estimate array
       const newItem = { ...item, id: Date.now() }; // Simple unique id
       setEstimates([...estimates, newItem]);
     }
@@ -86,7 +87,7 @@ function EstimateManagementPage() {
     // If the estimate has line items, save new estimate and add it to setAllEstimates
     if (estimates.length > 0) {
         const newEstimate = {
-            id: Date.now(),  // unique identifier
+            id: Date.now(),  // unique identifier (probably should make more unique)
             name: estimateName,
             date: new Date().toLocaleDateString(),  // Save the current date
             items: estimates,
